@@ -1,7 +1,10 @@
-export default function(id = '', action){
-    if(action.type === 'deleteItem'){
-        return action.id;
+export default function(data = [], action){
+    let dataCopy = [...data];
+    if(action.type === 'loadMovie'){
+        return action.data;
+    } else if(action.type === 'deleteItem'){
+        return dataCopy.filter(e => e.id != action.id)
     } else {
-        return id;
+        return data;
     }
 }

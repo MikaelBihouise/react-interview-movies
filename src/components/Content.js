@@ -6,38 +6,43 @@ let movies = require('../components/movies');
 
 function Content(props) {
 
-    const [movieList, setMovieList] = useState([])
-
     useEffect(() => {
         async function loadData() {
             const response = await movies;
-            let result = response.movies$.then((v) => {setMovieList(v)})
+            let result = response.movies$.then((v) => {props.loadMovie(v)});
         }
         loadData();
-    }, [movieList])
+    }, []);
 
-    let movieData =  movieList.map((movie) => {
-        return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id}/>)
-    })
+    console.log(props.id)
 
-    if(props.id == typeof 1) {
-        console.log('HIIII')
-        setMovieList(movieList.filter((movie) => movie.id != props.id));
-    }
-
+    let movieData = props.id.map((movie) => {
+        return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id}/>);
+    });
 
     return (
             <div className="content">
                 {movieData}
             </div>
         );
+    };
+
+function mapDispatchToProps(dispatch){
+    return {
+        loadMovie: function(dataMovie){
+            dispatch(
+                { type: 'loadMovie', data: dataMovie },            
+            );
+        }, 
     }
+}
 
 function mapStateToProps(state) {
+    console.log(state)
     return { id: state.dataMovie }
 }
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(Content);

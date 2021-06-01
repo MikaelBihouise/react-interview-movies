@@ -14,6 +14,11 @@ const CardMovie = (props) => {
     const [valueLike, setvalueLike] = useState(props.likes);
     const [valueDislike, setvalueDislike] = useState(props.dislikes);
     const [valueProgress, setvalueProgress] = useState(100 - ((valueDislike * 100) / (valueLike + valueDislike)));
+    const [movieDeleted, setMovieDeleted] = useState(props.isDeleted);
+
+    let movieDeletion = () => {
+        setMovieDeleted(true);
+    }
 
     if(likeMovie === false){
         colorLike = {cursor:'pointer'}
@@ -77,8 +82,7 @@ const CardMovie = (props) => {
             <div className='card-like-bar'>
                 <progress id="like" max="100" value={valueProgress}></progress>
             </div>
-            <button className='button-1 end' onClick={ ()=>props.deleteItem(props.id) }>Supprimé ce film</button>
-
+            <button className='button-1 end' onClick={ ()=>props.deleteItem(props.id)}>Supprimé ce film</button>
         </div>
     </div>
     )
