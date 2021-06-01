@@ -1,3 +1,5 @@
+import {connect} from 'react-redux';
+
 const movies = [
   {
     id: '1',
@@ -20,7 +22,7 @@ const movies = [
   }, {
     id: '4',
     title: 'Sans un bruit',
-    category: 'Thriller',
+    category: 'Thriller', 
     likes: 6,
     dislikes: 6
   }, {
@@ -62,4 +64,15 @@ const movies = [
   },
 ]
 
+const deleteMovie = (props) => {
+  console.log('HEYYYYYY', props.id)
+  return movies.filter(e => e != e.props.id)
+}
+
 export const movies$ = new Promise((resolve, reject) => setTimeout(resolve, 100, movies))
+
+function mapStateToProps(state) {
+  return { id: state.id }
+};
+
+export default connect(mapStateToProps)(deleteMovie);
