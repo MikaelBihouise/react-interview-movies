@@ -3,7 +3,7 @@ import CardMovie from '../components/CardMovie';
 import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-
+import Select from 'react-select';
 
 let movies = require('../components/movies');
 
@@ -15,6 +15,8 @@ function Content(props) {
     const [pageNumberLimit, setpageNumberLimit] = useState(3);
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
+
+    console.log(itemsPerPage);
 
     useEffect(() => {
         async function loadData() {
@@ -74,18 +76,39 @@ function Content(props) {
         }
     }
 
+    const filmAffiche = [
+        { value: 4, label: 4 },
+        { value: 8, label: 8 },
+        { value: 12, label: 12 }
+    ];
+
+    const handleChange = (e) => {
+        setitemsPerPage(e.value);
+    }
+
     return (
             <div className="content">
                 <div className='pagination'>
-                    <ul className='page-numbers'>
-                        <li onClick={handlePrevButton}>
-                            <FontAwesomeIcon icon={faChevronLeft} />
-                        </li>
-                        {renderPageNumbers}
-                        <li onClick={handleNextButton}>
-                            <FontAwesomeIcon icon={faChevronRight} />
-                        </li>
-                    </ul>
+                    <div className='page-to-show'>
+                        <p>Film affichés : </p>
+                        <Select 
+                            options={filmAffiche}
+                            placeholder='4'
+                            className='select'
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className='page-number-container'>
+                        <ul className='page-numbers'>
+                            <li onClick={handlePrevButton}>
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                            </li>
+                            {renderPageNumbers}
+                            <li onClick={handleNextButton}>
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="content">
                     {movieData}
@@ -105,7 +128,6 @@ function mapDispatchToProps(dispatch){
 }
 
 function mapStateToProps(state) {
-    console.log(state)
     return { id: state.dataMovie }
 }
 

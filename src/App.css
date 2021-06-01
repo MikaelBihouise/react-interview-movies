@@ -151,11 +151,14 @@ progress::-webkit-progress-value {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .page-numbers {
   list-style: none;
   display: flex;
+  padding-inline-start: 0;
 }
 
 .page-numbers li {
@@ -176,6 +179,22 @@ progress::-webkit-progress-value {
   color: #fff;
 }
 
-.icon {
-  
+.page-to-show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
 }
+
+.page-number-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+}
+
+.select {
+  width: 70px;
+  margin-left: 15px;
+}
+
