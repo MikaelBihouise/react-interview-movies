@@ -11,6 +11,7 @@ function Content(props) {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setitemsPerPage] = useState(12);
+    const [itemsPerPageHold, setitemsPerPageHold] = useState(12);
 
     const [pageNumberLimit, setpageNumberLimit] = useState(3);
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
@@ -96,6 +97,7 @@ function Content(props) {
 
     const handleChange = (e) => {
         setitemsPerPage(e.value);
+        setitemsPerPageHold(e.value);
     }
 
     const handleChangeFiltre = (e) => {
@@ -118,9 +120,25 @@ function Content(props) {
     }
 
     if(filtre){
-        movieData = nouvelleListeFilm.map((movie) => {
-            return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
-        });
+        if(nouvelleListeFilm.length < 4) {
+            renderPageNumbers[1] = null;
+            renderPageNumbers[2] = null;
+            movieData = nouvelleListeFilm.map((movie) => {
+                return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+            });
+        } else if (nouvelleListeFilm.length > 4 && nouvelleListeFilm.length < 8 && itemsPerPageHold === 4) {
+            renderPageNumbers[2] = null;
+            let newMovieData = nouvelleListeFilm.slice(indexOfFirstItem, indexOfLastItem);
+            movieData = newMovieData.map((movie) => {
+                return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+            });
+        } else if (nouvelleListeFilm.length > 4 && nouvelleListeFilm.length < 8 ) {
+            renderPageNumbers[1] = null;
+            renderPageNumbers[2] = null;
+            movieData = nouvelleListeFilm.map((movie) => {
+                return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+            });
+        }
     }
 
     return (
