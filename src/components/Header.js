@@ -1,20 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import logo from '../images/logo.svg';
-import {connect} from 'react-redux';
 
-let movies = require('../components/movies');
-
-function Header(props) {
-
-    const [movieList, setMovieList] = useState([])
-
-    useEffect(() => {
-        async function loadData() {
-            const response = await movies;
-            let result = response.movies$.then((v) => {setMovieList(v)})
-            }
-        loadData();
-    }, [])
+function Header() {
 
     return (
         <div className="Header">
