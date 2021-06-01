@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faHeartBroken } from '@fortawesome/free-solid-svg-icons';
-import movie from '../images/img1.jpg';
 import {connect} from 'react-redux';
+
 
 const CardMovie = (props) => {
 
@@ -14,11 +14,6 @@ const CardMovie = (props) => {
     const [valueLike, setvalueLike] = useState(props.likes);
     const [valueDislike, setvalueDislike] = useState(props.dislikes);
     const [valueProgress, setvalueProgress] = useState(100 - ((valueDislike * 100) / (valueLike + valueDislike)));
-    const [movieDeleted, setMovieDeleted] = useState(props.isDeleted);
-
-    let movieDeletion = () => {
-        setMovieDeleted(true);
-    }
 
     if(likeMovie === false){
         colorLike = {cursor:'pointer'}
@@ -71,7 +66,7 @@ const CardMovie = (props) => {
     return (
     <div className='card-style'>
         <div className='card-image'>
-            <img src={movie} alt='Frozen 2 card' />
+            <img src={process.env.PUBLIC_URL + props.img} alt={props.title} />
         </div>
         <div className='card-content'> 
             <p className='card-title'>{props.title}</p>

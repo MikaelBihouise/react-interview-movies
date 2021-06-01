@@ -13,10 +13,8 @@ function Content(props) {
     const [itemsPerPage, setitemsPerPage] = useState(4);
 
     const [pageNumberLimit, setpageNumberLimit] = useState(3);
-    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
+    const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
-
-    console.log(itemsPerPage);
 
     useEffect(() => {
         async function loadData() {
@@ -57,8 +55,10 @@ function Content(props) {
     const currentItems = props.id.slice(indexOfFirstItem, indexOfLastItem);
 
     let movieData = currentItems.map((movie) => {
-        return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id}/>);
+        return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
     });
+
+    console.log(movieData[0]);
 
     const handlePrevButton = () => {
         if(currentPage - 1 < 1) {
