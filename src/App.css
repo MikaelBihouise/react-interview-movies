@@ -40,6 +40,7 @@ p {
 /* Content */
 
 .content {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -144,4 +145,37 @@ progress::-webkit-progress-value {
 .end {
   margin-top: auto;
   margin-bottom: 30px;
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.page-numbers {
+  list-style: none;
+  display: flex;
+}
+
+.page-numbers li {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: 1px solid #2b2b2b;
+}
+
+.page-numbers li:hover {
+  background-color: #2b2b2b;
+  cursor: pointer;
+  color: #fff;
+}
+
+.page-numbers li.active {
+  background-color: #2b2b2b;
+  cursor: pointer;
+  color: #fff;
+}
+
+.icon {
+  
 }
