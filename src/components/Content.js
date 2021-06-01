@@ -16,6 +16,9 @@ function Content(props) {
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
+    const [filtre, setFiltre] = useState(false);
+    const [nouvelleListeFilm, setNouvelleListeFilm] = useState([]);
+
     useEffect(() => {
         async function loadData() {
             const response = await movies;
@@ -81,15 +84,43 @@ function Content(props) {
     ];
 
     const filtreFilm = [];
+    const initialFilter = [...props.id];
 
-    const categoryFilm = movieData.map((movie) => {
-        filtreFilm.push({id: movie.props.category, label: movie.props.category})
+    const categoryFilm = initialFilter.map((movie) => {
+        filtreFilm.push({id: movie.category, label: movie.category});
     });
 
+    const labelFilm = filtreFilm.filter((value,index,array)=>array.findIndex(movie=>(movie.id === value.id && movie.label===value.label))===index);
     
+    const newLabelFilm = labelFilm.push({id: 1, label: 'Aucune'});
 
     const handleChange = (e) => {
         setitemsPerPage(e.value);
+    }
+
+    const handleChangeFiltre = (e) => {
+        if(e.id === 1 && filtre === true){
+            setitemsPerPage(12);
+            setFiltre(false);
+        }
+        let filterItems = props.id.filter(movie => movie.category == e.id);
+        if(filterItems.length > 4) {
+            setitemsPerPage(filterItems.length - (filterItems.length - 4));
+        } else if((filterItems.length > 8)) {
+            setitemsPerPage(filterItems.length - (filterItems.length - 8));
+        } else if((filterItems.length > 12)) {
+            setitemsPerPage(filterItems.length - (filterItems.length - 12));
+        } else {
+            setitemsPerPage(filterItems.length);
+        }
+        setFiltre(true);
+        setNouvelleListeFilm(filterItems)
+    }
+
+    if(filtre){
+        movieData = nouvelleListeFilm.map((movie) => {
+            return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+        });
     }
 
     return (
@@ -118,9 +149,10 @@ function Content(props) {
                     <div className='category-filter'>
                         <p>Choisir la catégorie : </p>
                         <Select 
-                            options={filtreFilm}
+                            options={labelFilm}
                             placeholder='Catégorie'
                             className='select-filtre'
+                            onChange={handleChangeFiltre}
                         />
                     </div>
                 </div>
