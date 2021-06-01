@@ -93,7 +93,7 @@ function Content(props) {
 
     const labelFilm = filtreFilm.filter((value,index,array)=>array.findIndex(movie=>(movie.id === value.id && movie.label===value.label))===index);
     
-    const newLabelFilm = labelFilm.push({id: 1, label: 'Aucune'});
+    const newLabelFilm = labelFilm.push({id: 'Aucune', label: 'Aucune'});
 
     const handleChange = (e) => {
         setitemsPerPage(e.value);
@@ -101,22 +101,24 @@ function Content(props) {
     }
 
     const handleChangeFiltre = (e) => {
-        if(e.id === 1 && filtre === true){
-            setitemsPerPage(12);
-            setFiltre(false);
-        }
-        let filterItems = props.id.filter(movie => movie.category == e.id);
-        if(filterItems.length > 4) {
-            setitemsPerPage(filterItems.length - (filterItems.length - 4));
-        } else if((filterItems.length > 8)) {
-            setitemsPerPage(filterItems.length - (filterItems.length - 8));
-        } else if((filterItems.length > 12)) {
-            setitemsPerPage(filterItems.length - (filterItems.length - 12));
+        if(e.id === 'Aucune'){
+            let resetFilter = props.id.filter(movie => movie.category != e.id);
+            setNouvelleListeFilm(resetFilter);
+            setitemsPerPage(resetFilter.length);
         } else {
-            setitemsPerPage(filterItems.length);
+            let filterItems = props.id.filter(movie => movie.category == e.id);
+            if(filterItems.length > 4) {
+                setitemsPerPage(filterItems.length - (filterItems.length - 4));
+            } else if((filterItems.length > 8)) {
+                setitemsPerPage(filterItems.length - (filterItems.length - 8));
+            } else if((filterItems.length > 12)) {
+                setitemsPerPage(filterItems.length - (filterItems.length - 12));
+            } else {
+                setitemsPerPage(filterItems.length);
+            }
+            setFiltre(true);
+            setNouvelleListeFilm(filterItems)
         }
-        setFiltre(true);
-        setNouvelleListeFilm(filterItems)
     }
 
     if(filtre){
@@ -148,7 +150,7 @@ function Content(props) {
                         <p>Film affichés : </p>
                         <Select 
                             options={filmAffiche}
-                            placeholder='4'
+                            placeholder='12'
                             className='select'
                             onChange={handleChange}
                         />

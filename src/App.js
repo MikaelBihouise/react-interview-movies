@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import logo from './images/logo.svg';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import dataMovie from './reducers/dataMovie';
-import CardMovie from './components/CardMovie';
 import Header from './components/Header';
 import Content from './components/Content';
 
@@ -12,7 +10,7 @@ let movies = require('./components/movies.js');
 
 const store = createStore(combineReducers({dataMovie}))
 
-function App(props) {
+function App() {
 
   const [movieList, setMovieList] = useState([])
 
@@ -22,20 +20,13 @@ function App(props) {
       let result = response.movies$.then((v) => {setMovieList(v)})
     }
     loadData();
-  }, [])
-
-  // let movieData =  movieList.map((movie) => {
-  //   return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id}/>)
-  // })
+  }, [movieList])
 
   return (
     <Provider store={store}> 
-      <div className="Body">
+      <div className="body">
         <Header />
         <Content />
-        {/* <div className="content">
-          {movieData}
-        </div> */}
       </div>
     </Provider>
   );

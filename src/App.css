@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-.Body {
+.body {
   background-color: #f3f3f3;
   min-height: 100vh;
   font-size: 16px;
@@ -16,7 +16,7 @@ p {
 
 /* Header */
 
-.Header {
+.header {
   min-height: 5vh;
   background-color: #1b1b1b;
   font-family: 'Poppins', sans-serif;
@@ -24,7 +24,7 @@ p {
   align-items: center;
 }
 
-.Header h1 {
+.header h1 {
   font-size: 30px;
   padding: 0 0 0 10px;
   font-family: 'Limelight', cursive;
@@ -147,6 +147,8 @@ progress::-webkit-progress-value {
   margin-bottom: 30px;
 }
 
+/* Pagination */
+
 .pagination {
   width: 100%;
   display: flex;
@@ -198,6 +200,8 @@ progress::-webkit-progress-value {
   margin-left: 15px;
 }
 
+/* Filter */
+
 .category-filter {
   display: flex;
   align-items: center;
@@ -208,4 +212,41 @@ progress::-webkit-progress-value {
 .select-filtre {
   width: 150px;
   margin-left: 15px;
+}
+
+/* Média queries */
+
+@media screen and (max-width: 380px) {
+  .content {
+    padding: 40px 0 15px 0;
+    justify-content: center;
+  }
+
+  .card-style {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5%;
+    width: 280px;
+    height: 400px;
+  }
+
+  .category-filter {
+    flex-direction: column;
+  }
+
+  .category-filter p {
+    margin-bottom: 5px;
+  }
+
+  .select-filtre {
+    width: 150px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 720px) {
+  .content {
+    padding: 40px 0 15px 0;
+    justify-content: center;
+  }
 }
