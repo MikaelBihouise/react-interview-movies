@@ -198,3 +198,14 @@ progress::-webkit-progress-value {
   margin-left: 15px;
 }
 
+.category-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+}
+
+.select-filtre {
+  width: 150px;
+  margin-left: 15px;
+}

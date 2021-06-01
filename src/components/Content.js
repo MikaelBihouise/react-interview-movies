@@ -10,7 +10,7 @@ let movies = require('../components/movies');
 function Content(props) {
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setitemsPerPage] = useState(4);
+    const [itemsPerPage, setitemsPerPage] = useState(12);
 
     const [pageNumberLimit, setpageNumberLimit] = useState(3);
     const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
@@ -58,8 +58,6 @@ function Content(props) {
         return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
     });
 
-    console.log(movieData[0]);
-
     const handlePrevButton = () => {
         if(currentPage - 1 < 1) {
             setCurrentPage(currentPage);
@@ -81,6 +79,14 @@ function Content(props) {
         { value: 8, label: 8 },
         { value: 12, label: 12 }
     ];
+
+    const filtreFilm = [];
+
+    const categoryFilm = movieData.map((movie) => {
+        filtreFilm.push({id: movie.props.category, label: movie.props.category})
+    });
+
+    
 
     const handleChange = (e) => {
         setitemsPerPage(e.value);
@@ -108,6 +114,14 @@ function Content(props) {
                                 <FontAwesomeIcon icon={faChevronRight} />
                             </li>
                         </ul>
+                    </div>
+                    <div className='category-filter'>
+                        <p>Choisir la catégorie : </p>
+                        <Select 
+                            options={filtreFilm}
+                            placeholder='Catégorie'
+                            className='select-filtre'
+                        />
                     </div>
                 </div>
                 <div className="content">

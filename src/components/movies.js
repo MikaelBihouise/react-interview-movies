@@ -38,8 +38,8 @@ const movies = [
     id: '6',
     title: 'Pulp Fiction',
     category: 'Thriller',
-    likes: 11,
-    dislikes: 3,
+    likes: 11233,
+    dislikes: 32,
     img: '/pulp-fiction.jpg'
   }, {
     id: '7',
