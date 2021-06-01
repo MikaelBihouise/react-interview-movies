@@ -15,13 +15,13 @@ const CardMovie = (props) => {
     const [valueDislike, setvalueDislike] = useState(props.dislikes);
     const [valueProgress, setvalueProgress] = useState(100 - ((valueDislike * 100) / (valueLike + valueDislike)));
 
-    if(likeMovie == false){
+    if(likeMovie === false){
         colorLike = {cursor:'pointer'}
     } else {
         colorLike = {color: '#FF033A', cursor:'pointer'}
     }
 
-    if(dislikeMovie == false){
+    if(dislikeMovie === false){
         colorDislike = {cursor:'pointer', marginLeft: '10px'}
     } else {
         colorDislike = {color: '#FF033A', cursor:'pointer', marginLeft: '10px'}
@@ -32,7 +32,7 @@ const CardMovie = (props) => {
             setLikeMovie(false);
             setvalueLike(valueLike - 1);
             setvalueProgress(100 - ((valueDislike * 100) / ((valueLike + valueDislike) - 1)));
-        } else if(likeMovie == false && dislikeMovie == true) {
+        } else if(likeMovie === false && dislikeMovie === true) {
             setLikeMovie(true);
             setDislikeMovie(false);
             setvalueDislike(valueDislike - 1);
@@ -50,7 +50,7 @@ const CardMovie = (props) => {
             setDislikeMovie(false);
             setvalueDislike(valueDislike - 1);
             setvalueProgress(100 - (((valueDislike - 1) * 100) / (valueLike + valueDislike - 1)));
-        } else if(dislikeMovie == false && likeMovie == true) {
+        } else if(dislikeMovie === false && likeMovie === true) {
             setLikeMovie(false);
             setDislikeMovie(true);
             setvalueLike(valueLike - 1);
@@ -87,9 +87,8 @@ const CardMovie = (props) => {
 function mapDispatchToProps(dispatch){
     return {
         deleteItem: function(id){
-            console.log(id);
-        dispatch(
-            { type: 'deleteItem', id: id },            
+            dispatch(
+                { type: 'deleteItem', id: id },            
             );
         }, 
     }

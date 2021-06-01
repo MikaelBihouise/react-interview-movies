@@ -1,8 +1,7 @@
-export default function(value = '', action){
-    console.log(action)
-    if(action.type === 'delete'){
-        return action.value;
+export default function(id = '', action){
+    if(action.type === 'deleteItem'){
+        return action.id;
     } else {
-        return value;
+        return id;
     }
 }
