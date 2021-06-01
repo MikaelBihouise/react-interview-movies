@@ -66,7 +66,7 @@ const CardMovie = (props) => {
     return (
     <div className='card-style'>
         <div className='card-image'>
-            <img src={process.env.PUBLIC_URL + props.img} alt={props.title} />
+            <img src={process.env.PUBLIC_URL + props.img} alt={'Une image de fond qui représente le film ' + props.title} />
         </div>
         <div className='card-content'> 
             <p className='card-title'>{props.title}</p>
