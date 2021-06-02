@@ -9,8 +9,6 @@ const CardMovie = (props) => {
     let colorLike;
     let colorDislike;
 
-
-
     const [likeMovie, setLikeMovie] = useState(props.isLiked);
     const [dislikeMovie, setDislikeMovie] = useState(props.isDisliked);
     const [valueLike, setvalueLike] = useState(props.likes);
@@ -23,9 +21,6 @@ const CardMovie = (props) => {
         setLikeMovie(props.isLiked);
         setDislikeMovie(props.isDisliked);
     }, [props.likes]);
-
-    console.log(props.isDisliked)
-
 
     if(likeMovie === false && props.isLiked === false){
         colorLike = {cursor:'pointer'}

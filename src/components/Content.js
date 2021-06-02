@@ -99,6 +99,11 @@ function Content(props) {
     const handleChange = (e) => {
         setitemsPerPage(e.value);
         setitemsPerPageHold(e.value);
+        if(movieData.length < e.value && e.value === 12) {
+            setCurrentPage(1)
+        } else if(movieData.length < e.value && e.value === 8){
+            setCurrentPage(2)
+        }
     }
 
     const handleChangeFiltre = (e) => {
