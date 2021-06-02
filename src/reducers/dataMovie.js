@@ -3,7 +3,7 @@ export default function(data = [], action){
     if(action.type === 'loadMovie'){
         return action.data;
     } else if(action.type === 'deleteItem'){
-        return dataCopy.filter(e => e.id != action.id);
+        return dataCopy.filter(e => e.id !== action.id);
     } else if(action.type === 'likedItem'){
         dataCopy.forEach((e) => {
             if(e.id === action.id){

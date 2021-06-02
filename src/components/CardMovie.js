@@ -35,7 +35,6 @@ const CardMovie = (props) => {
     }
 
     let changeLiked = () => {
-        console.log(likeMovie)
         if(props.isLiked){
             props.unlikedItem(props.id);
             setLikeMovie(false);

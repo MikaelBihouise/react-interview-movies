@@ -44,7 +44,7 @@ function Content(props) {
                     key={number} 
                     id={number} 
                     onClick={handleClick}
-                    className={currentPage == number ? 'active' : null}
+                    className={currentPage === number ? 'active' : null}
                 >
                     {number}
                 </li>
@@ -59,7 +59,7 @@ function Content(props) {
     const currentItems = props.id.slice(indexOfFirstItem, indexOfLastItem);
 
     let movieData = currentItems.map((movie) => {
-        return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+        return(<CardMovie key={movie.title} isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
     });
 
     const handlePrevButton = () => {
@@ -106,15 +106,13 @@ function Content(props) {
     
     const newLabelFilm = labelFilm.push({value: 'Aucune', label: 'Aucune'});
 
-    console.log(initialFilter)
-
     const handleChangeFiltre = (e) => {
         if(e.value === 'Aucune'){
-            let resetFilter = props.id.filter(movie => movie.category != e.value);
+            let resetFilter = props.id.filter(movie => movie.category !== e.value);
             setNouvelleListeFilm(resetFilter);
             setitemsPerPage(resetFilter.length);
         } else {
-            let filterItems = props.id.filter(movie => movie.category == e.value);
+            let filterItems = props.id.filter(movie => movie.category === e.value);
             if(filterItems.length > 4) {
                 setitemsPerPage(filterItems.length - (filterItems.length - 4));
             } else if((filterItems.length > 8)) {
@@ -134,19 +132,19 @@ function Content(props) {
             renderPageNumbers[1] = null;
             renderPageNumbers[2] = null;
             movieData = nouvelleListeFilm.map((movie) => {
-                return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+                return(<CardMovie key={movie.title} isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
             });
         } else if (nouvelleListeFilm.length > 4 && nouvelleListeFilm.length < 8 && itemsPerPageHold === 4) {
             renderPageNumbers[2] = null;
             let newMovieData = nouvelleListeFilm.slice(indexOfFirstItem, indexOfLastItem);
             movieData = newMovieData.map((movie) => {
-                return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+                return(<CardMovie key={movie.title} isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
             });
         } else if (nouvelleListeFilm.length > 4 && nouvelleListeFilm.length < 8 ) {
             renderPageNumbers[1] = null;
             renderPageNumbers[2] = null;
             movieData = nouvelleListeFilm.map((movie) => {
-                return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+                return(<CardMovie key={movie.title} isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
             });
         }
     }
