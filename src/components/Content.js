@@ -59,12 +59,13 @@ function Content(props) {
     const currentItems = props.id.slice(indexOfFirstItem, indexOfLastItem);
 
     let movieData = currentItems.map((movie) => {
-        return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+        return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
     });
 
     const handlePrevButton = () => {
         if(currentPage - 1 < 1) {
             setCurrentPage(currentPage);
+            
         } else {
             setCurrentPage(currentPage - 1);
         }
@@ -126,19 +127,19 @@ function Content(props) {
             renderPageNumbers[1] = null;
             renderPageNumbers[2] = null;
             movieData = nouvelleListeFilm.map((movie) => {
-                return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+                return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
             });
         } else if (nouvelleListeFilm.length > 4 && nouvelleListeFilm.length < 8 && itemsPerPageHold === 4) {
             renderPageNumbers[2] = null;
             let newMovieData = nouvelleListeFilm.slice(indexOfFirstItem, indexOfLastItem);
             movieData = newMovieData.map((movie) => {
-                return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+                return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
             });
         } else if (nouvelleListeFilm.length > 4 && nouvelleListeFilm.length < 8 ) {
             renderPageNumbers[1] = null;
             renderPageNumbers[2] = null;
             movieData = nouvelleListeFilm.map((movie) => {
-                return(<CardMovie title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
+                return(<CardMovie isLiked={movie.isLiked} isDisliked={movie.isDisliked} title={movie.title} likes={movie.likes} dislikes={movie.dislikes} category={movie.category} id={movie.id} img={movie.img} />);
             });
         }
     }
