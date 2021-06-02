@@ -1,6 +1,7 @@
 export default function(data = [], action){
     let dataCopy = [...data];
     if(action.type === 'loadMovie'){
+        console.log('HEY')
         return action.data;
     } else if(action.type === 'deleteItem'){
         return dataCopy.filter(e => e.id !== action.id);

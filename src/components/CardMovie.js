@@ -102,7 +102,7 @@ function mapDispatchToProps(dispatch){
     return {
         deleteItem: function(id){
             dispatch(
-                { type: 'deleteItem', idToDelete: id }        
+                { type: 'deleteItem', id: id }        
             );
         }, 
         likedItem: function(id){
