@@ -83,8 +83,17 @@ function Content(props) {
         setitemsPerPageHold(e.value);
         if(movieData.length < e.value && e.value === 12) {
             setCurrentPage(1);
+        } else if(movieData.length < e.value && e.value === 8 && filtre === true){
+            setCurrentPage(1);
+            setpageNumberLimit(1)
+        } else if(movieData.length < e.value && e.value === 4){
+            setCurrentPage(1);
+            setpageNumberLimit(1)
         } else if(movieData.length < e.value && e.value === 8){
             setCurrentPage(2);
+        } else if(movieData.length < e.value && e.value === 4){
+            setCurrentPage(2);
+            setpageNumberLimit(1)
         }
     }
 
@@ -123,6 +132,16 @@ function Content(props) {
             }
             setFiltre(true);
             setNouvelleListeFilm(filterItems);
+        }
+        if(itemsPerPageHold <= 4){
+            setCurrentPage(1);
+            setpageNumberLimit(1)
+        } else if(itemsPerPageHold >= 4) {
+            setCurrentPage(1);
+            setpageNumberLimit(2)
+        } else if(itemsPerPageHold === 8) {
+            setCurrentPage(1);
+            setpageNumberLimit(2);
         }
     }
 

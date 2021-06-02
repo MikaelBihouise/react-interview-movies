@@ -187,10 +187,12 @@ progress::-webkit-progress-value {
   border: none;
   align-self: flex-start;
   cursor: pointer;
+  transition: 0.4s;
 }
 
 .button-1:hover {
-  background-color: #e00333;
+  background-color: #2b2b2b;
+  color: #fff;
   cursor: pointer;
 }
 
@@ -219,6 +221,7 @@ progress::-webkit-progress-value {
   padding: 10px 20px;
   margin: 0 5px;
   border: 1px solid #2b2b2b;
+  transition: 0.4s;
 }
 
 .page-numbers li:hover {
