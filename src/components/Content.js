@@ -79,23 +79,6 @@ function Content(props) {
         }
     }
 
-    const filmAffiche = [
-        { value: 4, label: 4 },
-        { value: 8, label: 8 },
-        { value: 12, label: 12 }
-    ];
-
-    const filtreFilm = [];
-    const initialFilter = [...props.id];
-
-    const categoryFilm = initialFilter.map((movie) => {
-        filtreFilm.push({id: movie.category, label: movie.category});
-    });
-
-    const labelFilm = filtreFilm.filter((value,index,array)=>array.findIndex(movie=>(movie.id === value.id && movie.label===value.label))===index);
-    
-    const newLabelFilm = labelFilm.push({id: 'Aucune', label: 'Aucune'});
-
     const handleChange = (e) => {
         setitemsPerPage(e.value);
         setitemsPerPageHold(e.value);
@@ -106,13 +89,32 @@ function Content(props) {
         }
     }
 
+    const filmAffiche = [
+        { value: 4, label: 4 },
+        { value: 8, label: 8 },
+        { value: 12, label: 12 }
+    ];
+
+    const filtreFilm = [];
+    const initialFilter = [...props.id];
+
+    const categoryFilm = initialFilter.map((movie) => {
+        filtreFilm.push({value: movie.category, label: movie.category});
+    });
+
+    const labelFilm = filtreFilm.filter((value,index,array)=>array.findIndex(movie=>(movie.label === value.value && movie.label===value.label))===index);
+    
+    const newLabelFilm = labelFilm.push({value: 'Aucune', label: 'Aucune'});
+
+    console.log(initialFilter)
+
     const handleChangeFiltre = (e) => {
-        if(e.id === 'Aucune'){
-            let resetFilter = props.id.filter(movie => movie.category != e.id);
+        if(e.value === 'Aucune'){
+            let resetFilter = props.id.filter(movie => movie.category != e.value);
             setNouvelleListeFilm(resetFilter);
             setitemsPerPage(resetFilter.length);
         } else {
-            let filterItems = props.id.filter(movie => movie.category == e.id);
+            let filterItems = props.id.filter(movie => movie.category == e.value);
             if(filterItems.length > 4) {
                 setitemsPerPage(filterItems.length - (filterItems.length - 4));
             } else if((filterItems.length > 8)) {
