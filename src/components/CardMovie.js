@@ -87,7 +87,7 @@ const CardMovie = (props) => {
             <p className='card-title'>{props.title}</p>
             <p>Catégorie : {props.category}</p>
             <div className='card-like'>
-                <label for="like"><FontAwesomeIcon style={colorLike} icon={faHeart} onClick={() => changeLiked()}/><span>{valueLike}</span><FontAwesomeIcon style={colorDislike} icon={faHeartBroken} onClick={() => changeDisliked()}/><span>{valueDislike}</span></label>
+                <label for="like"><FontAwesomeIcon style={colorLike} className='font-icon beating' icon={faHeart} onClick={() => changeLiked()}/><span>{valueLike}</span><FontAwesomeIcon style={colorDislike} className='font-icon fade' icon={faHeartBroken} onClick={() => changeDisliked()}/><span>{valueDislike}</span></label>
             </div>
             <div className='card-like-bar'>
                 <progress id="like" max="100" value={valueProgress}></progress>

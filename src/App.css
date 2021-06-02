@@ -47,6 +47,14 @@ p {
   padding: 40px 2% 0 2%;
 }
 
+.content-movies {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px 2% 0 2%;
+}
+
 /* Card */
 
 .card-style {
@@ -84,6 +92,50 @@ p {
   padding: 0 0 0 30px;
   display: flex;
   align-items: center;
+}
+
+.font-icon {
+  opacity: 100%;
+}
+
+@keyframes heartbeat {
+  0% {
+    color: #FF033A;
+  }
+  15% {
+    color: #FF033A;
+  }
+  25% {
+    color: #d40834;
+  }
+  35% {
+    color: #FF033A;
+  }
+  40% {
+    color: #FF033A;
+  }
+  50% {
+    color: #d40834;
+  }
+  60% {
+    color: #FF033A;
+  }
+  100% {
+    color: #FF033A;
+  }
+}
+
+.beating:hover{
+  animation: heartbeat 1.4s 1;
+}
+
+.font-icon:hover {
+  color: #FF033A;
+}
+
+.fade:hover {
+  opacity: 50%;
+  transition: opacity 0.8s;
 }
 
 .card-like span {
@@ -217,11 +269,6 @@ progress::-webkit-progress-value {
 /* Média queries */
 
 @media screen and (max-width: 380px) {
-  .content {
-    padding: 40px 0 15px 0;
-    justify-content: center;
-  }
-
   .card-style {
     margin: 0;
     padding: 0;
@@ -242,10 +289,26 @@ progress::-webkit-progress-value {
     width: 150px;
     margin-left: 0;
   }
+
+  .content-movies {
+    padding: 40px 0 15px 0;
+    justify-content: center;
+  }
+
+  .content {
+    padding: 40px 0 15px 0;
+    justify-content: center;
+  }
+
 }
 
 @media screen and (min-width: 380px) and (max-width: 720px) {
   .content {
+    padding: 40px 0 15px 0;
+    justify-content: center;
+  }
+
+  .content-movies {
     padding: 40px 0 15px 0;
     justify-content: center;
   }

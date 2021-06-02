@@ -64,8 +64,7 @@ function Content(props) {
 
     const handlePrevButton = () => {
         if(currentPage - 1 < 1) {
-            setCurrentPage(currentPage);
-            
+            setCurrentPage(currentPage); 
         } else {
             setCurrentPage(currentPage - 1);
         }
@@ -83,9 +82,9 @@ function Content(props) {
         setitemsPerPage(e.value);
         setitemsPerPageHold(e.value);
         if(movieData.length < e.value && e.value === 12) {
-            setCurrentPage(1)
+            setCurrentPage(1);
         } else if(movieData.length < e.value && e.value === 8){
-            setCurrentPage(2)
+            setCurrentPage(2);
         }
     }
 
@@ -123,7 +122,7 @@ function Content(props) {
                 setitemsPerPage(filterItems.length);
             }
             setFiltre(true);
-            setNouvelleListeFilm(filterItems)
+            setNouvelleListeFilm(filterItems);
         }
     }
 
@@ -182,7 +181,7 @@ function Content(props) {
                         />
                     </div>
                 </div>
-                <div className="content">
+                <div className="content-movies">
                     {movieData}
                 </div>
             </div>
