@@ -38,5 +38,5 @@ export default function(data = [], action){
         return dataCopy;
     }else {
         return data;
-    }
+    } 
 }

@@ -92,7 +92,7 @@ const CardMovie = (props) => {
             <div className='card-like-bar'>
                 <progress id="like" max="100" value={valueProgress}></progress>
             </div>
-            <button className='button-1 end' onClick={ ()=>props.deleteItem(props.id)}>Supprimé ce film</button>
+            <button className='button-1 end' onClick={()=>props.deleteItem(props.id)}>Supprimé ce film</button>
         </div>
     </div>
     )
@@ -102,7 +102,7 @@ function mapDispatchToProps(dispatch){
     return {
         deleteItem: function(id){
             dispatch(
-                { type: 'deleteItem', id: id }        
+                { type: 'deleteItem', idToDelete: id }        
             );
         }, 
         likedItem: function(id){

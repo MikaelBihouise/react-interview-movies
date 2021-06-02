@@ -18,6 +18,7 @@ function Content(props) {
     const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
     const [filtre, setFiltre] = useState(false);
+    const [listeFilm, setListeFilm] = useState([]);
     const [nouvelleListeFilm, setNouvelleListeFilm] = useState([]);
 
     useEffect(() => {
@@ -114,13 +115,21 @@ function Content(props) {
     
     const newLabelFilm = labelFilm.push({value: 'Aucune', label: 'Aucune'});
 
+    useEffect(() => {
+        setListeFilm([...props.id]);
+        setNouvelleListeFilm([...props.id]);
+        setFiltre(false);
+        setitemsPerPage(12)
+    }, [props.id]);
+
     const handleChangeFiltre = (e) => {
         if(e.value === 'Aucune'){
-            let resetFilter = props.id.filter(movie => movie.category !== e.value);
+            let resetFilter = listeFilm.filter(movie => movie.category !== e.value);
             setNouvelleListeFilm(resetFilter);
             setitemsPerPage(resetFilter.length);
         } else {
-            let filterItems = props.id.filter(movie => movie.category === e.value);
+            
+            let filterItems = listeFilm.filter(movie => movie.category === e.value);
             if(filterItems.length > 4) {
                 setitemsPerPage(filterItems.length - (filterItems.length - 4));
             } else if((filterItems.length > 8)) {
@@ -218,7 +227,7 @@ function mapDispatchToProps(dispatch){
 }
 
 function mapStateToProps(state) {
-    return { id: state.dataMovie }
+    return { id: state.dataMovie,  }
 }
 
 export default connect(
